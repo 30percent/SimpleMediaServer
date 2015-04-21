@@ -12,12 +12,9 @@ if(array_key_exists("upload", $_POST) && !($_POST["upload"] == "no")){
     $type = retFileType($_FILES['mediafile']['tmp_name']);
       $finfo = finfo_open(FILEINFO_MIME_TYPE);
       $mimetype = finfo_file($finfo, $_FILES['mediafile']['tmp_name']);
-      echo "MIMETYPE: " . $mimetype;
-    echo 'TYPE:  ' . $type . '\n';
     $i_name = "media/default.png";
     if($type != "ERROR"){
       $target_file = retAppendedFile($target_dir, $target_file);
-      echo " " . $_FILES["thumbnail"]["tmp_name"] . " " . $target_file;
       if($type != "image" && isset($_FILES['thumbnail']) && file_exists($_FILES['thumbnail']['tmp_name'])){
         if(retFileType($_FILES['thumbnail']['tmp_name']) == "image"){
           $thumbFile = basename($_FILES['thumbnail']['name']);
