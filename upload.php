@@ -5,10 +5,13 @@ require_once 'foos.php';
 
 if(array_key_exists("upload", $_POST) && !($_POST["upload"] == "no")){
 
-
   if((!empty($_FILES['mediafile'])) && ($_FILES['mediafile']['error'] == 0)){
     $target_file = basename($_FILES['mediafile']['name']);
     $target_dir = "media/" . $_SESSION['logged'] . "/";
+    if(!file_exists($target_dir)){
+      mkdir($target_dir, 0755);
+      chmod($target_dir, 0755);
+    }
     $type = retFileType($_FILES['mediafile']['tmp_name']);
       $finfo = finfo_open(FILEINFO_MIME_TYPE);
       $mimetype = finfo_file($finfo, $_FILES['mediafile']['tmp_name']);
@@ -20,13 +23,14 @@ if(array_key_exists("upload", $_POST) && !($_POST["upload"] == "no")){
           $thumbFile = basename($_FILES['thumbnail']['name']);
           $thumbFile = retAppendedFile($target_dir, $thumbFile);
           if(move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $thumbFile)){
-            chmod($thumbFile, 755);
+            chmod($thumbFile, 0755);
+
             $i_name = $thumbFile;
           }
         }
       }
       if(move_uploaded_file($_FILES["mediafile"]["tmp_name"], $target_file)){
-        chmod($target_file, 755);
+        chmod($target_file, 0755);
         if($type == "image"){
           $i_name = $target_file;
           $target_file = "media/default.mp3";
