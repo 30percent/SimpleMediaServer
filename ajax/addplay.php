@@ -1,6 +1,5 @@
 <?php
-  require_once "meekrodb.php";
-  require_once "logged.php";
+  require_once "../scripts/core.php";
 
   $myID = $_SESSION["loggedid"];
   DB::$error_handler = false; // since we're catching errors, don't need error handler

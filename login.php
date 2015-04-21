@@ -1,7 +1,6 @@
 <?php
 
-require_once 'logged.php';
-require_once 'meekrodb.php';
+require_once 'scripts/core.php';
 
 //DB::$port = '12345';
 
@@ -54,7 +53,7 @@ if (array_key_exists("logged", $_SESSION) && !($_SESSION['logged'] == "") ) { //
 
      echo '</form></table></td>';
 
-		echo '<td><table><form action="register.php" method="post"><input type="hidden" name="ac" value="regi">';
+		echo '<td><table><form action="ajax/register.php" method="post"><input type="hidden" name="ac" value="regi">';
 
 		echo '<tr><td>Username:  </td><td><input type="text" name="username" /></td></tr>';
 

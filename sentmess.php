@@ -1,8 +1,7 @@
 <?php
   //print_r($_POST);
 
-  require_once "meekrodb.php";
-  require_once "logged.php";
+  require_once "scripts/core.php";
 
 
   DB::$error_handler = false; // since we're catching errors, don't need error handler

@@ -1,7 +1,6 @@
 <?php
 
-require_once 'logged.php';
-require_once 'meekrodb.php';
+require_once 'scripts/core.php';
 
 $unread = DB::query("SELECT meid, mailbox.uid, suid, user.username, title, date_sent, message, unread
 FROM mailbox

@@ -1,8 +1,7 @@
 <?php
   print_r($_POST);
 
-    require_once "meekrodb.php";
-    require_once "logged.php";
+    require_once "../scripts/core.php";
 
     $myID = $_SESSION["loggedid"];
     DB::$error_handler = false; // since we're catching errors, don't need error handler
@@ -14,9 +13,10 @@
           'subid' => $_POST["channel"],
           'uid' => $myID
         ));
+        echo "You've now subscribed.";
       }
     } catch(MeekroDBException $e) {
-      //already added to list
+      echo "You remain subscribed.";
     }
 
     // restore default error handling behavior

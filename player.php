@@ -1,9 +1,8 @@
 <html>
 <head>
   <?php
-    require_once 'foos.php';
-    require_once 'logged.php';
-    require_once 'meekrodb.php';
+    require_once 'scripts/core.php';
+    require_once 'scripts/playerfunc.php';
     ?>
     <link rel='stylesheet' type='text/css' href='style/style.css' />
     <script type='text/javascript' src='fancybox/lib/jquery-1.10.1.min.js'></script>
@@ -17,10 +16,6 @@
     setvideoid(t);
   }
   function setvideoid(id){
-    if(document.getElementById("mainid").value < 0){
-      settopid(id);
-    }
-      settopid(id);
     if(document.getElementById("hiddenvideofield") != null){
       document.getElementById("hiddenvideofield").value = id;
     }
@@ -115,23 +110,14 @@
 
 if(isset($_GET['id'])){
   $id = $_GET['id'];
-  $results = DB::queryFullColumns('SELECT mid, path, title, description, type,
-    date_created, imagepath, user.uid, user.username from media
-    inner join user on media.uid = user.uid
-    where mid=%i', $id);
+  $results = getMediaResults('id', $id);
   $count = DB::count();
   $title = $results[0]['media.title'];
-  $username = $results[0]['user.username'];
 }
 if(isset($_GET['playlist'])){
   $playlist = $_GET['playlist'];
-  $results = DB::queryFullColumns('SELECT media.mid, media.path, media.title,
-    media.description, media.type, media.date_created, media.imagepath,
-    playlist.title FROM media
-    inner join playlistcontents on media.mid = playlistcontents.mid
-    inner join playlist on playlistcontents.pid = playlist.pid
-    where playlist.pid = %i', $playlist);
-    $title=$results[0]['playlist.title'];
+  $results = getMediaResults('playlist', $playlist);
+  $title=$results[0]['playlist.title'];
 }
 if(isset($_SESSION["loggedid"])){
   $myPlaylists = getPlaylists($_SESSION["loggedid"]);
@@ -144,7 +130,7 @@ if(isset($playlist)){
 }
 echo "</td></tr><tr><td>";
 if(isset($myPlaylists)){
-  echo "<table><tr><td class='border'><form id='addPlay' action='addplay.php' target='_blank' method='post'>
+  echo "<table><tr><td class='border'><form id='addPlay' action='ajax/addplay.php' target='_blank' method='post'>
     <select name='playlist' required>";
       foreach($myPlaylists as $row){
         echo "<option value='" . $row['pid'] . "'>" . $row['title'] . "</option>";
@@ -156,14 +142,14 @@ if(isset($myPlaylists)){
   echo '<input type="hidden" name="video" id="hiddenvideofield" value=1000>';
 }
 if(isset($playlist)){
-    echo '<td class="border"><form id="remPlay" action="remplay.php" target="_blank" method ="post">
+    echo '<td class="border"><form id="remPlay" action="ajax/remplay.php" target="_blank" method ="post">
     <input type="hidden" name="video" id="hiddenvideofield3" value=1000>
     <input type="hidden" name="playlist" value=' . $playlist .'>
     <input type="submit" value="Remove From: ' . $title . '" /></form></td>';
 }
 ?>
 
-<td class='border'><form id='newPlay' action='newplay.php' target='_blank' method='post'>
+<td class='border'><form id='newPlay' action='ajax/newplay.php' target='_blank' method='post'>
   <b>Create New Playlist: </b><br /><input type='text' name='listname' required/>
   <input type="hidden" name="video" id="hiddenvideofield2" value=1000>
   <input type="submit" value="Add to New Playlist" />

@@ -1,6 +1,5 @@
 <?php
-  require_once 'meekrodb.php';
-  require_once 'logged.php';
+  require_once '../scripts/core.php';
   if(array_key_exists("ac", $_POST)){
     $uname = $_POST["username"];
     $upass = $_POST["password"];

@@ -1,8 +1,7 @@
 <table border='0' cellspacing='0'>
 
 <?php
-require_once 'meekrodb.php';
-//move to meekrodb.php eventually
+require_once 'scripts/core.php';
 
 $categories=DB::query("SELECT name FROM category ORDER BY name DESC");
 $tags=DB::query("SELECT name,count FROM populartags ORDER BY count DESC LIMIT 6"); //make view, do by popularity
@@ -34,7 +33,7 @@ echo "</ul></td></tr>";
     <?php
       foreach($subscriptions as $row){
         echo "<li><a href='search.php?user=" . trim($row['username']) . "'>" . $row['username'] . "</a>";
-        echo " <br /> &nbsp &nbsp<a target='_blank' href='remsub.php?channel=" . $row['subid'] . "'>Unsubscribe</a></li>";
+        echo " <br /> &nbsp &nbsp<a target='_blank' href='ajax/remsub.php?channel=" . $row['subid'] . "'>Unsubscribe</a></li>";
       }
     ?>
   </ul>

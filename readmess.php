@@ -1,7 +1,6 @@
 <?php
 
-require_once 'logged.php';
-require_once 'meekrodb.php';
+require_once 'scripts/core.php';
 
 $results = DB::query("SELECT user.username, title, date_sent, message from
 mailbox inner join user on mailbox.suid = user.uid where meid=%i", $_GET['meid']);

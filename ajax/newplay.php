@@ -1,7 +1,6 @@
 <?php
 
-  require_once "meekrodb.php";
-  require_once "logged.php";
+  require_once "../scripts/core.php";
 
   $myID = $_SESSION["loggedid"];
 

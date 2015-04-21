@@ -1,8 +1,7 @@
 <?php
   //print_r($_POST);
 
-  require_once "meekrodb.php";
-  require_once "logged.php";
+  require_once "scripts/core.php";
 
 
   DB::$error_handler = false; // since we're catching errors, don't need error handler
@@ -18,10 +17,10 @@
         'uid' => $myID,
         'message' => $comment
       ));
-      echo "Message Sent Successfully!";
+      echo "Comment Posted Successfully!";
     }
   } catch(MeekroDBException $e) {
-    echo "Message failed to send. Ensure the user actually exists.";
+    echo "Message failed to send. Ensure you got here from video comment section.";
   }
 
   // restore default error handling behavior

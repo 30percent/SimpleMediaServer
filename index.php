@@ -9,7 +9,7 @@
       <div id="nav-menu">
         <!--top menu-->
         <?php
-          require_once "logged.php";
+          require_once "scripts/core.php";
           check_logged();
         ?>
       </div>
