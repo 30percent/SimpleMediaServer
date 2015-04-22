@@ -5,7 +5,7 @@ require_once 'meekrodb.php';
 
 //move to meekrodb.php eventually
 DB::$user = 'metube_vcgu';
-DB::$password = 'iH4tey0u';
+DB::$password = 'h3ll0pass';
 DB::$dbName = 'metube_u4an';
 DB::$host = 'mysql1.cs.clemson.edu';
 DB::$port = 3306;
@@ -33,35 +33,6 @@ function check_logged(){
     echo "</form>";
 	}
 
-};
-
-function retAppendedFile($target_dir, $target_file){
-  $orig = pathinfo($target_dir . $target_file, PATHINFO_FILENAME);
-  $ext = pathinfo($target_dir . $target_file, PATHINFO_EXTENSION);
-  $retfile = $target_dir . $orig . "." . $ext;
-  $iter = 0;
-  while(file_exists($retfile)){
-    $retfile = $orig . strval($iter) . "." . $ext;
-    $iter++;
-  }
-  return $retfile;
-}
-
-function retFileType($file){
-  $finfo = finfo_open(FILEINFO_MIME_TYPE);
-  $mimetype = finfo_file($finfo, $file);
-  echo "MIMETYPE: " . $mimetype;
-  $type = "ERROR";
-  if(strpos($mimetype, "image") !== false){
-    $type = "image";
-  } else if(strpos($mimetype, "audio") !== false){
-    $type = "audio";
-  } else if(strpos($mimetype, "video") !== false){
-    $type = "video";
-  } else {
-    $type = "ERROR";
-  }
-  return $type;
 }
 
 function simpleHeader(){

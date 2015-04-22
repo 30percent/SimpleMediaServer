@@ -5,8 +5,8 @@
     $upass = $_POST["password"];
     $result = DB::query("SELECT uid FROM user WHERE username=%s", $uname);
     if(DB::count() > 0){
-      echo 'I\'m sorry, that username is already taken.';
-      require 'login.php';
+      echo '<script>alert("I\'m sorry, that username is already taken.");</script>';
+      echo "<script>window.close();</script>";
     }
     else{
       DB::insert("user", array(
@@ -14,7 +14,8 @@
         'password' => $upass
       ));
       $_POST['ac'] = 'log';
-      require 'login.php';
+        echo '<script>alert("Username successfully registered.");</script>';
+      echo "<script>window.close();</script>";
     }
   }
 ?>

@@ -31,7 +31,7 @@
           //alert (dataString);return false;
           $.ajax({
             type: "POST",
-            url: "sentmess.php",
+            url: "ajax/sentmess.php",
             data: dataString,
             success: function(html) {
               alert(html);

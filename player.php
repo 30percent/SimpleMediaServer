@@ -92,7 +92,7 @@
         //alert (dataString);return false;
         $.ajax({
           type: "POST",
-          url: "sentcomm.php",
+          url: "ajax/sentcomm.php",
           data: dataString,
           success: function(html) {
             alert(html);
