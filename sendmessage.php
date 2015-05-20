@@ -56,7 +56,7 @@
               <td><input type="text" placeholder="User" id="user" required>
               <label class="error" for="name" id="user_error" style="display: none;">This field is required.</label></td></tr>
               <tr><td><b>Message:</b></td><td colspan=3>
-              <textarea id='message' name='message' rows=12 cols=60> </textarea>
+              <textarea id='message' name='message' rows=12 cols=60></textarea>
               <label class="error" for="name" id="message_error" style="display: none;">This field is required.</label></td>
             </tr>
             <tr><td></td><td>
