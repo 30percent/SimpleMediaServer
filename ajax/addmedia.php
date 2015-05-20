@@ -4,7 +4,7 @@
   require_once '../scripts/filefuncs.php';
 
   if(array_key_exists("upload", $_POST) && !($_POST["upload"] == "no")){
-
+    chdir("../");
     if((!empty($_FILES['mediafile'])) && ($_FILES['mediafile']['error'] == 0)){
       $target_file = basename($_FILES['mediafile']['name']);
       $target_dir = "media/" . $_SESSION['logged'] . "/";
